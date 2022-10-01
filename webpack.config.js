@@ -49,7 +49,6 @@ module.exports = {
         sourceMapFilename: '[file].map',
         filename: `app/js/[name].min.js`,
     },
-
     resolve: {
         extensions: ['.tsx', '.ts', '.jsx', '.js', '.scss', '.css'],
         modules: ['node_modules'],
@@ -231,7 +230,7 @@ module.exports = {
 
     // https://webpack.js.org/configuration/dev-server/
     devServer: {
-        port: 3000,
+        port: 3333,
         host: '0.0.0.0',
         compress: true,
         allowedHosts: 'all',

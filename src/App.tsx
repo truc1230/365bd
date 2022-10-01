@@ -1,22 +1,17 @@
 /** @format */
 
-import * as React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Dashboard } from './pages/Dashboard';
-import { Provider } from "react-redux";
-import store, { persistor } from "./stores";
-import { PersistGate } from "redux-persist/lib/integration/react";
+import { RouterWrapper, StoreProviderWrapper,ThemeProviderWrappers } from './wrapper';
+import routes from './configs/routes';
 
-const App = () => (
-  <Provider store={store}>
-    <PersistGate loading={<div>loading</div>} persistor={persistor}>
-      <Router>
-        <Routes>
-          <Route path='/' element={<Dashboard />} />
-        </Routes>
-      </Router>
-    </PersistGate>
-  </Provider>
-);
+
+function App() {
+  return (
+    <StoreProviderWrapper>
+      <ThemeProviderWrappers>
+          <RouterWrapper default='/' routes={routes} />
+      </ThemeProviderWrappers>
+    </StoreProviderWrapper>
+  );
+}
 
 export default App;
