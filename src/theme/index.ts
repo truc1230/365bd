@@ -1,4 +1,4 @@
-// import '@mui/lab/themeAugmentation';
+import '@mui/lab/themeAugmentation';
 import { createTheme as createMuiTheme } from '@mui/material/styles';
 import variants from './variants';
 import typography from './typography';
@@ -8,7 +8,6 @@ import shadows from './shadows';
 
 const createTheme = (name: string) => {
   let themeConfig = variants.find((variant) => variant.name === name);
-
   if (!themeConfig) {
     console.warn(new Error(`The theme ${name} is not valid`));
     themeConfig = variants[0];
@@ -20,7 +19,7 @@ const createTheme = (name: string) => {
       breakpoints: breakpoints,
       // @ts-ignore
       components: components,
-      typography: typography,
+      // typography: typography,
       shadows: shadows,
       palette: themeConfig.palette,
     },

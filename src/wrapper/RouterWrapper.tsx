@@ -6,8 +6,8 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import { RoleProps, RouteProps } from "../@types";
-import LoadingScreen from "../components/LoadingScreen";
+import { RoleProps, RouteProps } from "@types";
+import LoadingScreen from "components/LoadingScreen";
 
 
 

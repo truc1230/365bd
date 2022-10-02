@@ -4,11 +4,12 @@
 
 import React from 'react';
 import _ from 'lodash';
-import RGL, { WidthProvider } from "react-grid-layout";
+import RGL, { WidthProvider } from 'react-grid-layout';
+import { Button } from '@mui/material';
 
 const ReactGridLayout = WidthProvider(RGL);
 
-export default class ToolboxLayout extends React.Component {
+export default class DashboardBuilder extends React.Component {
   static defaultProps = {
     className: 'layout',
     rowHeight: 30,
@@ -30,8 +31,8 @@ export default class ToolboxLayout extends React.Component {
   }
   renderToolBoxItem = (item, onTakeItem) => {
     return (
-      <div key={item.i} className='toolbox__items__item relative' onClick={()=>onTakeItem( item)}>
-        <div className='hide-button' onClick={(e)=>this.onDeleteItem(e,item)}>
+      <div key={item.i} className='toolbox__items__item relative' onClick={() => onTakeItem(item)}>
+        <div className='hide-button' onClick={(e) => this.onDeleteItem(e, item)}>
           &times;
         </div>
         {item.i}
@@ -54,7 +55,7 @@ export default class ToolboxLayout extends React.Component {
     return _.map(this.state.layouts, (l) => {
       return (
         <div key={l.i} className={l.static ? 'static' : ''}>
-          <div className='hide-button' onClick={()=>this.onPutItem(l)}>
+          <div className='hide-button' onClick={() => this.onPutItem(l)}>
             &times;
           </div>
           {l.static ? (
@@ -86,9 +87,9 @@ export default class ToolboxLayout extends React.Component {
   };
 
   onTakeItem = (item) => {
-    console.log([...this.state.layouts])
+    console.log([...this.state.layouts]);
     this.setState((prevState) => ({
-      toolbox:  [...prevState.toolbox.filter(({ i }) => i !== item.i)],
+      toolbox: [...prevState.toolbox.filter(({ i }) => i !== item.i)],
       layouts: [...prevState.layouts, item],
     }));
   };
@@ -132,6 +133,9 @@ export default class ToolboxLayout extends React.Component {
     return (
       <div>
         <div>
+          <Button type='submit' className='' color='primary' fullWidth variant='contained' sx={{ mt: 3, mb: 2 }}>
+            Sign In
+          </Button>
         </div>
         <div>Compaction type: {_.capitalize(this.state.compactType) || 'No Compaction'}</div>
         <button onClick={this.onNewLayout}>Generate New Layout</button>

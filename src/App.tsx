@@ -1,7 +1,7 @@
 /** @format */
 
-import { RouterWrapper, StoreProviderWrapper,ThemeProviderWrappers } from './wrapper';
-import routes from './configs/routes';
+import { RouterWrapper, StoreProviderWrapper,ThemeProviderWrappers } from 'wrapper';
+import routes from 'configs/routes';
 
 
 function App() {

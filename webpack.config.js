@@ -29,6 +29,10 @@ const path = require("path"),
     // https://webpack.js.org/plugins/html-webpack-plugin/
     HtmlWebPackPlugin = require('html-webpack-plugin')
 
+
+    // https://www.npmjs.com/package/tsconfig-paths-webpack-plugin
+    TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+
 const packageFolder = path.resolve(__dirname, 'build')
 const isDevelopment = process.env.NODE_ENV !== "production"
 
@@ -52,6 +56,10 @@ module.exports = {
     resolve: {
         extensions: ['.tsx', '.ts', '.jsx', '.js', '.scss', '.css'],
         modules: ['node_modules'],
+        plugins: [new TsconfigPathsPlugin({
+            configFile: './tsconfig.json',
+            extensions: ['.tsx', '.ts', '.jsx', '.js']
+          })]
     },
 
     module: {
@@ -161,8 +169,8 @@ module.exports = {
 
         // build html file
         new HtmlWebPackPlugin({
-            template: "./src/index.html",
-            filename: "./index.html"
+            template: "./src/index.html.ejs",
+            // filename: "./index.html"
         }),
 
         isDevelopment && new ReactRefreshWebpackPlugin(),
@@ -175,7 +183,11 @@ module.exports = {
 
         // Bundle Analyzer, a visual view of what goes into each JS file.
         // https://www.npmjs.com/package/webpack-bundle-analyzer
-        process.env.ANALYZE && new BundleAnalyzerPlugin()
+        process.env.ANALYZE && new BundleAnalyzerPlugin(),
+
+        new TsconfigPathsPlugin({
+            // baseUrl : "src"
+        })
 
     ].filter(Boolean),
 
@@ -208,7 +220,6 @@ module.exports = {
 
                 // Use multi-process parallel running to improve the build speed
                 parallel: true,
-
                 extractComments: false,
             }),
 
@@ -230,11 +241,16 @@ module.exports = {
 
     // https://webpack.js.org/configuration/dev-server/
     devServer: {
+        static: {
+            directory: path.resolve(__dirname, 'dist'),
+        },
         port: 3333,
-        host: '0.0.0.0',
+        // host: '0.0.0.0',
         compress: true,
         allowedHosts: 'all',
-        hot: true
+        hot: true,
+        open: true,
+        historyApiFallback: true
     },
 
     performance: {

@@ -1,6 +1,8 @@
-import { RouteProps } from "../@types";
-import { Dashboard } from "../pages/Dashboard";
-import LoginPage from "../pages/LoginPage";
+import { RouteProps } from "@types";
+import { Dashboard } from "pages/Dashboard";
+import SignInPage from "pages/SignInPage";
+import SignUpPage from "pages/SignUpPage";
+
 
 
 /**
@@ -11,15 +13,21 @@ const routes: Array<RouteProps> = [
   {
     path: "/",
     type: "element",
-    element: LoginPage,
+    element: Dashboard,
     auth: ["guest"],
   },
   {
-    path: "/dashboard",
+    path: "/login",
     type: "element",
-    element: Dashboard,
+    element: SignInPage,
     auth: ["guest"],
-  }
+  },
+  {
+    path: "/register",
+    type: "element",
+    element: SignUpPage,
+    auth: ["guest"],
+  },
 ];
 
 export default routes;
