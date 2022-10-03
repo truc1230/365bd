@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import { RoleProps, RouteProps } from "@types";
 import LoadingScreen from "components/LoadingScreen";
+import { useAppSelector } from "stores";
 
 
 
@@ -19,11 +20,13 @@ interface PrivateRouteProps {
 }
 
 const PrivateRoute = (props: PrivateRouteProps) => {
-  const { alt, children } = props;
+  const token = useAppSelector(state=>state.auth.token)
+  console.log(token);
+  const { alt, children, auth } = props;
   /** Modify this base on user information */
   const isAuth = true;
 
-  return isAuth ? children : <Navigate to={alt || "/"} />;
+  return auth?.includes('guest')  ? children : <Navigate to={alt || "/login"} />;
 };
 
 const renderRoute = (route: RouteProps) => {

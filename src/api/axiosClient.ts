@@ -1,9 +1,9 @@
-import axios from "axios";
-
-const instance = axios.create({
-  baseURL: process.env.REACT_APP_HOSTNAME,
+import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
+const axiosClient = axios.create({
+  baseURL: process.env.REACT_APP_API_BASE_URL,
   timeout: 1000,
   headers: {
+    // Authorization: `Bearer ${accessToken}`,
     "Content-Type": "application/json",
     Accept: "application/json",
     credentials: "include",
@@ -13,7 +13,7 @@ const instance = axios.create({
   withCredentials: true,
 });
 
-instance.interceptors.request.use(
+axiosClient.interceptors.request.use(
   function (config) {
     // Do something before request is sent
     // const accessToken = loadAccessToken();
@@ -29,8 +29,8 @@ instance.interceptors.request.use(
 );
 
 // Add a response interceptor
-instance.interceptors.response.use(
-  function (response) {
+axiosClient.interceptors.response.use(
+  function (response: AxiosResponse<any>) {
     // Any status code that lie within the range of 2xx cause this function to trigger
     // Do something with response data
     return response;
@@ -42,4 +42,4 @@ instance.interceptors.response.use(
   }
 );
 
-export default instance;
+export default axiosClient;

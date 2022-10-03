@@ -27,11 +27,13 @@ const path = require("path"),
     ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin'),
 
     // https://webpack.js.org/plugins/html-webpack-plugin/
-    HtmlWebPackPlugin = require('html-webpack-plugin')
+    HtmlWebPackPlugin = require('html-webpack-plugin'),
 
 
     // https://www.npmjs.com/package/tsconfig-paths-webpack-plugin
-    TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+    TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin'),
+
+    Dotenv = require('dotenv-webpack');
 
 const packageFolder = path.resolve(__dirname, 'build')
 const isDevelopment = process.env.NODE_ENV !== "production"
@@ -163,6 +165,8 @@ module.exports = {
     },
 
     plugins: [
+        new Dotenv(),
+
         new webpack.ProvidePlugin({
             React: "react",
         }),
@@ -249,7 +253,7 @@ module.exports = {
         compress: true,
         allowedHosts: 'all',
         hot: true,
-        open: true,
+        // open: true,
         historyApiFallback: true
     },
 

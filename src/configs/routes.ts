@@ -14,7 +14,7 @@ const routes: Array<RouteProps> = [
     path: "/",
     type: "element",
     element: Dashboard,
-    auth: ["guest"],
+    auth: ["user"],
   },
   {
     path: "/login",

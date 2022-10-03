@@ -1,3 +1,3 @@
-type RoleProps = "guest" | "employee" | "manager" | "admin";
+type RoleProps = "guest" | "user" |"employee" | "manager" | "admin";
 
 export default RoleProps;

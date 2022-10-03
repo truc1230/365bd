@@ -1,18 +1,22 @@
 import DashboardBuilder from "components/DashboardBuilder";
+import Layout from "components/Layout";
 import styled from "styled-components";
+import * as React from 'react';
+// import { DataGrid, GridToolbar } from '@mui/x-data-grid';
+// import { useDemoData } from '@mui/x-data-grid-generator';
 
+const VISIBLE_FIELDS = ['name', 'rating', 'country', 'dateCreated', 'isAdmin']
 export const Dashboard: React.FC<{}> = () => {
+  // const { data } = useDemoData({
+  //   dataSet: 'Employee',
+  //   visibleFields: VISIBLE_FIELDS,
+  //   rowLength: 100,
+  // });
   return (
-    <div className="bg-red-500">
+    <Layout>
       <div className="text-bold text-3xl">h1</div>
-      <DashboardBuilder/>
-      <DivAB className="bg-blue-500"/>
-    </div>
-  )
-}
-const DivAB = styled.div`
-  /* ... */
-  width:100%;
-  height:100px;
-  background-color:${props => props.theme.palette.primary.main};;
-`;
+      {/* <DashboardBuilder/> */}
+      {/* <DataGrid {...data} components={{ Toolbar: GridToolbar }} /> */}
+    </Layout>
+  );
+};

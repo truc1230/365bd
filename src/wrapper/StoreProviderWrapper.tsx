@@ -3,7 +3,7 @@
 import { Provider } from 'react-redux';
 import { PersistGate } from "redux-persist/lib/integration/react";
 import LoadingScreen from 'components/LoadingScreen';
-import store, { persistor } from 'stores';
+import { store, persistor } from 'stores';
 
 interface StoreProviderProps {
   children: React.ReactNode;

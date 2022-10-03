@@ -8,6 +8,7 @@ import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { Formik } from 'formik';
+import { loginAction, useAppDispatch } from 'stores';
 import * as Yup from 'yup';
 
 function Copyright(props: any) {
@@ -24,6 +25,7 @@ function Copyright(props: any) {
 }
 
 export default function SignInPage() {
+  const dispatch = useAppDispatch()
   return (
     <Grid container component='main' sx={{ height: '100vh' }}>
       <Grid
@@ -39,7 +41,7 @@ export default function SignInPage() {
           backgroundPosition: 'center',
         }}
       />
-      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+      <Grid item xs={12} sm={8} md={5} component={Paper} className="flex items-center" elevation={6} square>
         <Box
           sx={{
             my: 8,
@@ -53,10 +55,10 @@ export default function SignInPage() {
           </Typography>
           <Box>
             <Formik
-              initialValues={{ email: 'abc', password: '123' }}
+              initialValues={{ email: 'bao@bao.com', password: 'bao' }}
               validationSchema={Yup.object().shape({})}
               onSubmit={(values, { setStatus: onSetStatus }) => {
-                console.log(values);
+                dispatch(loginAction(values))
               }}>
               {({ errors, handleBlur, handleChange, handleSubmit, touched, values, setFieldValue }) => (
                 <form onSubmit={handleSubmit}>
@@ -67,7 +69,7 @@ export default function SignInPage() {
                     fullWidth
                     id='email'
                     onChange={handleChange}
-                    label='Email Address'
+                    label='email '
                     name='email'
                     autoComplete='email'
                     autoFocus
