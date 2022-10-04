@@ -21,12 +21,11 @@ interface PrivateRouteProps {
 
 const PrivateRoute = (props: PrivateRouteProps) => {
   const token = useAppSelector(state=>state.auth.token)
-  console.log(token);
   const { alt, children, auth } = props;
   /** Modify this base on user information */
   const isAuth = true;
 
-  return auth?.includes('guest')  ? children : <Navigate to={alt || "/login"} />;
+  return auth?.includes('guest') || token  ? children : <Navigate to={alt || "/login"} />;
 };
 
 const renderRoute = (route: RouteProps) => {

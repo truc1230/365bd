@@ -6,7 +6,7 @@ import { Formik } from 'formik';
 import React from 'react';
 import styled from 'styled-components';
 import { TypePerson } from '@types';
-import { Dialog } from 'components';
+import CustomizedDialogs from 'components/common/Dialog';
 
 interface PersonDialogProps {
   open: boolean;
@@ -19,7 +19,7 @@ function PersonDialog(props: PersonDialogProps) {
   const { open, handleClose, type, onSubmit, values } = props;
   return (
     <PersonDialogStyles>
-      <Dialog open={open} handleClose={handleClose} closeButton header={type === 'add' ? 'Add Person' : 'update Person'}>
+      <CustomizedDialogs open={open} handleClose={handleClose} closeButton header={type === 'add' ? 'Add Person' : 'update Person'}>
         <Formik
           initialValues={values && Object.keys(values).length > 0 ? values : { fullName: '', email: '', phoneNumber: '' }}
           validationSchema={Yup.object().shape({
@@ -60,7 +60,7 @@ function PersonDialog(props: PersonDialogProps) {
             </form>
           )}
         </Formik>
-      </Dialog>
+      </CustomizedDialogs>
     </PersonDialogStyles>
   );
 }

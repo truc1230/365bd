@@ -1,24 +1,23 @@
-import * as React from 'react';
-import { styled, useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
-import CssBaseline from '@mui/material/CssBaseline';
-import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import List from '@mui/material/List';
-import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import LogoutIcon from '@mui/icons-material/Logout';
+import MailIcon from '@mui/icons-material/Mail';
+import MenuIcon from '@mui/icons-material/Menu';
+import InboxIcon from '@mui/icons-material/MoveToInbox';
+import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Divider from '@mui/material/Divider';
+import Drawer from '@mui/material/Drawer';
+import IconButton from '@mui/material/IconButton';
+import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
-
+import { styled, useTheme } from '@mui/material/styles';
+import Toolbar from '@mui/material/Toolbar';
+import * as React from 'react';
+import { authSlice, useAppDispatch } from 'stores';
 const drawerWidth = 240;
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{
@@ -73,7 +72,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 export default function Layout({children}:{children:React.ReactNode}) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-
+  const distpatch = useAppDispatch()
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -81,11 +80,15 @@ export default function Layout({children}:{children:React.ReactNode}) {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+  const handleLogout = () => {
+    console.log("object");
+    distpatch(authSlice.actions.logoutAction())
+  }
 
   return (
     <Box sx={{ display: 'flex' }}>
       <AppBar position="fixed" open={open}>
-        <Toolbar>
+        <Toolbar className="flex items-center justify-between">
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -95,8 +98,11 @@ export default function Layout({children}:{children:React.ReactNode}) {
           >
             <MenuIcon />
           </IconButton>
+          <LogoutIcon onClick={handleLogout} className="cursor-pointer"/>
         </Toolbar>
+        
       </AppBar>
+      
       <Drawer
         sx={{
           width: drawerWidth,
@@ -142,9 +148,8 @@ export default function Layout({children}:{children:React.ReactNode}) {
           ))} */}
         </List>
       </Drawer>
-      <Main open={open}>
+      <Main open={open} className="pt-[80px]">
         {children}
-        <div className="mt-10 h-[200px] w-full"></div>
       </Main>
     </Box>
   );

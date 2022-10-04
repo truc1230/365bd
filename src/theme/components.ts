@@ -1,4 +1,14 @@
 const components = {
+  MuiInputBase: {
+    styleOverrides: {
+      root:{
+        '& > input':{
+          // padding: 10,
+          
+        }
+      }
+    },
+  },
   MuiButtonBase: {
     defaultProps: {
       disableRipple: true,

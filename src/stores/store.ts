@@ -17,6 +17,7 @@ import {
 import { PersistedState } from "redux-persist/es/types";
 import storage from "redux-persist/lib/storage";
 import { authSlice } from "./auth";
+import { PersonSlice } from "./person";
 
 
 
@@ -41,6 +42,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   auth: authSlice.reducer,
+  person: PersonSlice.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

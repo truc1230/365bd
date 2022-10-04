@@ -1,15 +1,16 @@
 import { useState } from "react";
 import { Button } from "@mui/material";
-import { PersonSlice } from "store/Person";
 import PersonTable from "pages/PersonTablePage/PersonTable";
 import styled from "styled-components";
 import PersonDialog from "./PersonDialog";
 import { TypePerson } from "@types";
-import { Layout } from "components";
+import Layout from "components/Layout";
+import { PersonSlice, useAppDispatch, useAppSelector } from "stores";
+import { usePersonModal } from "./usePersonDialog";
 
 function PersonTablePage() {
   const [selected, setSelected] = useState([]);
-  const listPerson = useAppSelector((state) => state.Person.listPerson);
+  const listPerson = useAppSelector((state) => state.person.listPerson);
   function handleClickAddPerson() {
     setModalPerson("add", {} as TypePerson);
   }

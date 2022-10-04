@@ -5,8 +5,8 @@ import Checkbox from "@mui/material/Checkbox";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import { PersonTableProps, TypePerson } from "@types";
-import { useAppDispatch } from "store";
-import { PersonSlice } from "store/Person";
+import { PersonSlice, useAppDispatch } from "stores";
+
 
 interface Props extends PersonTableProps {
   row: TypePerson;

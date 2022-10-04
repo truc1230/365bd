@@ -3,7 +3,6 @@ import { TypeLoginPayload, TypeResLoginPayload } from "@types";
 import { LOGIN_URL } from "api";
 import axiosClient from "api/axiosClient";
 
-
 interface InitialState {
   loading: boolean;
   user: any;
@@ -17,7 +16,12 @@ const initialState: InitialState = {
 export const authSlice = createSlice({
   name: "auth",
   initialState: initialState,
-  reducers: {},
+  reducers: {
+    logoutAction: (state) =>{
+      state.token =  ""
+      state.user = {}
+    }
+  },
   extraReducers: (builder) => {
     builder.addCase(loginAction.pending, (state) => {
       state.loading = true;
@@ -27,6 +31,7 @@ export const authSlice = createSlice({
       state.loading = false;
       state.token = resLoginPayload.token;
       state.user = resLoginPayload.user;
+      window.location.href = '/dashboard'
     });
     builder.addCase(loginAction.rejected, (state) => {
       state.loading = false;

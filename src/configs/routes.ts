@@ -1,5 +1,6 @@
 import { RouteProps } from "@types";
 import { Dashboard } from "pages/Dashboard";
+// import PersonTablePage from "pages/PersonTablePage";
 import SignInPage from "pages/SignInPage";
 import SignUpPage from "pages/SignUpPage";
 
@@ -13,6 +14,7 @@ const routes: Array<RouteProps> = [
   {
     path: "/",
     type: "element",
+    // element: PersonTablePage,
     element: Dashboard,
     auth: ["user"],
   },

@@ -59,6 +59,7 @@ export default function SignInPage() {
               validationSchema={Yup.object().shape({})}
               onSubmit={(values, { setStatus: onSetStatus }) => {
                 dispatch(loginAction(values))
+                
               }}>
               {({ errors, handleBlur, handleChange, handleSubmit, touched, values, setFieldValue }) => (
                 <form onSubmit={handleSubmit}>
