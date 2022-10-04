@@ -1,6 +1,7 @@
 /** @format */
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
+// import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { StyledEngineProvider, ThemeProvider as MuiThemeProvider } from '@mui/material';
 import jssPreset from '@mui/styles/jssPreset';
 import StylesProvider from '@mui/styles/StylesProvider';
